@@ -16,8 +16,6 @@ namespace Quiz.Quiz
         [SerializeField] private List<Level> levels;
 
         [Header("Info box:")]
-
-        private List<Item> _currentListOfItems;
         private Level _currentLevel;
 
         private void Awake()
@@ -38,19 +36,10 @@ namespace Quiz.Quiz
             _currentLevel.GenerateLevel();
         }
 
-        public void SetCurrentLevelItems(List<Item> items)
-        {
-            this._currentListOfItems = items;
-        }
-        public void GenerateItemsAsUIComponents()
-        {
-            UI_Manager.Instance.InstanciateUIComponents(_currentListOfItems);
-        }
-
-        public void NextLevel(Level nextLevel)
+        public void NextLevel()
         {
             _currentLevel.Stop();
-            _currentLevel = nextLevel;
+            _currentLevel = _currentLevel.NextLevel;
             _currentLevel.Start();
         }
     }

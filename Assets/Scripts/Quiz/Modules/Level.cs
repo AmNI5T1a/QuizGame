@@ -9,6 +9,14 @@ namespace Quiz.Quiz
     {
         [SerializeField] public ushort ID;
         [SerializeField] protected ushort itemsOnScene;
+        [SerializeField] protected Level nextLevel;
+        public Level NextLevel
+        {
+            get
+            {
+                return nextLevel;
+            }
+        }
         [SerializeField] private List<StackOfItems> listOfItemStacks;
 
         protected GameManager _gameManager;
@@ -22,7 +30,10 @@ namespace Quiz.Quiz
 
         public virtual void Stop()
         {
-            // * Logic prepares scene for next level
+            foreach (GameObject ui_item in UI_Manager.Instance.instanciatedUI_GameObjects)
+                Destroy(ui_item);
+
+            UI_Manager.Instance.instanciatedUI_GameObjects.Clear();
         }
 
         public virtual void Start()
@@ -39,7 +50,7 @@ namespace Quiz.Quiz
 
             List<Item> list_OfChoosenItems = new List<Item>();
 
-            while (list_OfChoosenItems.Count != 3)
+            while (list_OfChoosenItems.Count != itemsOnScene)
             {
                 Item rndmlySelectedItem = rndmlyChoosenStackOfItems.stack[rngGenerator.Next(0, rndmlyChoosenStackOfItems.stack.Count - 1)];
 
@@ -47,8 +58,7 @@ namespace Quiz.Quiz
                     list_OfChoosenItems.Add(rndmlySelectedItem);
             }
 
-            _gameManager.SetCurrentLevelItems(items: list_OfChoosenItems);
-            _gameManager.GenerateItemsAsUIComponents();
+            UI_Manager.Instance.InstanciateUIComponents(list_OfChoosenItems);
         }
     }
 }
