@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5406791376081172135}
   - component: {fileID: 5406791376081172132}
+  - component: {fileID: 5448297416668613811}
   m_Layer: 5
   m_Name: Item template
   m_TagString: Untagged
@@ -46,6 +47,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5406791376081172134}
   m_CullTransparentMesh: 1
+--- !u!114 &5448297416668613811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5406791376081172134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3a115d3e57b124b92ace978cd759b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeTime: 1
+  shakeStrength: 10
+  vibrato: 1000
 --- !u!1 &5406791376131447961
 GameObject:
   m_ObjectHideFlags: 0

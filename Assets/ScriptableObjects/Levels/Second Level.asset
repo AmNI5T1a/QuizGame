@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   itemsOnScene: 6
+  nextLevel: {fileID: 11400000, guid: 4bb532758613cc7489cdfa9fc624df93, type: 2}
   listOfItemStacks:
   - {fileID: 11400000, guid: 7af223a54776e9f479131c1c2584cce2, type: 2}
   - {fileID: 11400000, guid: d0a2cadc3d0aba840a6cdd8f7ca6b174, type: 2}

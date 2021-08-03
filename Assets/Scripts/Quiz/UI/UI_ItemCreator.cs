@@ -29,7 +29,10 @@ namespace Quiz.Quiz
                     gameObject.AddComponent<UI_OnCorrectAnswer>();
                 }
                 else
+                {
                     gameObject.AddComponent<UI_OnWrongAnswer>();
+                    gameObject.GetComponent<UI_OnWrongAnswer>().ClickCooldown = 1f;
+                }
 
                 gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)rng.Next(0, 255), (byte)rng.Next(0, 255), (byte)rng.Next(0, 255), 255);
                 UI_Manager.Instance.instanciatedUI_GameObjects.Add(gameObject);
