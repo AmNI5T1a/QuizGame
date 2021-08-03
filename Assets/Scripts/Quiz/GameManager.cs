@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Quiz.Quiz
 {
+    // TODO: Check the purity of this method
     public class GameManager : MonoBehaviour, ILevelSwitcher
     {
         public static GameManager Instance;
@@ -15,14 +16,8 @@ namespace Quiz.Quiz
         [SerializeField] private List<Level> levels;
 
         [Header("Info box:")]
-        private ListOfItemsWithCorrectAnswer items = new ListOfItemsWithCorrectAnswer();
 
-        public class ListOfItemsWithCorrectAnswer
-        {
-            public List<Item> levelItems;
-            public Item choosenCorrectAnswer;
-        }
-
+        private List<Item> _currentListOfItems;
         private Level _currentLevel;
 
         private void Awake()
@@ -39,17 +34,17 @@ namespace Quiz.Quiz
             {
                 level.SetParams(this, this.gameObject.GetComponent<ILevelSwitcher>());
             }
+            _currentLevel = levels[0];
+            _currentLevel.GenerateLevel();
         }
 
-        public void GenerateUIComponents()
+        public void SetCurrentLevelItems(List<Item> items)
         {
-            UI_Manager.Instance.InstanciateUIComponents(items);
+            this._currentListOfItems = items;
         }
-
-        public void SetLevelItems(List<Item> listOfItems, Item correctAnswer)
+        public void GenerateItemsAsUIComponents()
         {
-            items.levelItems = listOfItems;
-            items.choosenCorrectAnswer = correctAnswer;
+            UI_Manager.Instance.InstanciateUIComponents(_currentListOfItems);
         }
 
         public void NextLevel(Level nextLevel)

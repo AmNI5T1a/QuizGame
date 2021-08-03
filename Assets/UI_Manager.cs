@@ -9,7 +9,7 @@ namespace Quiz.Quiz
         public static UI_Manager Instance;
 
         public List<GameObject> instanciatedUI_GameObjects;
-        public static event Action<GameManager.ListOfItemsWithCorrectAnswer> OnSendListOfItems;
+        public static event Action<List<Item>> OnSendListOfItems;
 
         void Awake()
         {
@@ -20,7 +20,7 @@ namespace Quiz.Quiz
         }
 
 
-        public void InstanciateUIComponents(GameManager.ListOfItemsWithCorrectAnswer items)
+        public void InstanciateUIComponents(List<Item> items)
         {
             OnSendListOfItems?.Invoke(items);
         }

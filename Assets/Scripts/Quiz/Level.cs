@@ -33,27 +33,22 @@ namespace Quiz.Quiz
         public virtual void GenerateLevel()
         {
             System.Random rngGenerator = new System.Random();
-            StackOfItems rndmlyChoosenStackOfItems = listOfItemStacks[rngGenerator.Next(0, listOfItemStacks.Count)];
+
+            // ! If u added only 1 stack it will choose this stack exactly
+            StackOfItems rndmlyChoosenStackOfItems = listOfItemStacks[rngGenerator.Next(0, listOfItemStacks.Count - 1)];
 
             List<Item> list_OfChoosenItems = new List<Item>();
 
-            for (ushort x = 0; x < itemsOnScene; x++)
+            while (list_OfChoosenItems.Count != 3)
             {
-                Item rndlySelectedItem = rndmlyChoosenStackOfItems.stack[rngGenerator.Next(0, rndmlyChoosenStackOfItems.stack.Count)];
+                Item rndmlySelectedItem = rndmlyChoosenStackOfItems.stack[rngGenerator.Next(0, rndmlyChoosenStackOfItems.stack.Count - 1)];
 
-                if (!list_OfChoosenItems.Contains(rndlySelectedItem))
-                    list_OfChoosenItems.Add(rndlySelectedItem);
-                else
-                    x--;
+                if (!list_OfChoosenItems.Contains(rndmlySelectedItem))
+                    list_OfChoosenItems.Add(rndmlySelectedItem);
             }
 
-            Item rndmlySelectedCorrectAnswer = list_OfChoosenItems[rngGenerator.Next(0, list_OfChoosenItems.Count)];
-            list_OfChoosenItems.Remove(rndmlySelectedCorrectAnswer);
-
-            _gameManager.SetLevelItems(listOfItems: list_OfChoosenItems,
-                                        correctAnswer: rndmlySelectedCorrectAnswer);
-
-            _gameManager.GenerateUIComponents();
+            _gameManager.SetCurrentLevelItems(items: list_OfChoosenItems);
+            _gameManager.GenerateItemsAsUIComponents();
         }
     }
 }

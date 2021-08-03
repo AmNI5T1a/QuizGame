@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Quiz.Modules;
 
 namespace Quiz.Quiz
 {
@@ -12,20 +13,31 @@ namespace Quiz.Quiz
         }
 
 
-        private void InstanciateUIComponents(GameManager.ListOfItemsWithCorrectAnswer listOfItems)
+        private void InstanciateUIComponents(List<Item> listOfItems)
         {
-            Debug.Log("Instanciating in UI_ItemCreator all items");
+            System.Random rng = new System.Random();
+            int rngCorrectAnswerPosition = rng.Next(0, (listOfItems.Count));
 
-            System.Random random = new System.Random();
-            ushort correctAnswerPosition = (ushort)random.Next(0, listOfItems.levelItems.Count);
-
-            foreach (Item item in listOfItems.levelItems)
+            int x = 0;
+            foreach (Item item in listOfItems)
             {
-                GameObject instance = Instantiate(Resources.Load("Item template"), this.gameObject.transform) as GameObject;
-                UI_Manager.Instance.instanciatedUI_GameObjects.Add(instance);
+                GameObject gameObject = CreateItem(item);
 
-                instance.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = item.GetImage();
+                if (x == rngCorrectAnswerPosition)
+                {
+                    gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color32(102, 20, 100, 255);
+                }
+                UI_Manager.Instance.instanciatedUI_GameObjects.Add(gameObject);
+                x++;
             }
+        }
+
+        private GameObject CreateItem(Item item)
+        {
+            GameObject itemGameObjectInstance = Instantiate(Resources.Load("Item template"), this.gameObject.transform) as GameObject;
+            itemGameObjectInstance.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = item.GetImage();
+
+            return itemGameObjectInstance;
         }
     }
 }

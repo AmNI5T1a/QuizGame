@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d2add680c67c948a7b19e8212c043c, type: 3}
   m_Name: Second Level
   m_EditorClassIdentifier: 
-  itemsOnScene: 0
-  generationType: 0
+  ID: 2
+  itemsOnScene: 6
+  listOfItemStacks:
+  - {fileID: 11400000, guid: 7af223a54776e9f479131c1c2584cce2, type: 2}
+  - {fileID: 11400000, guid: d0a2cadc3d0aba840a6cdd8f7ca6b174, type: 2}
