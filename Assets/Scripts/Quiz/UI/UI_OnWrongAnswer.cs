@@ -26,7 +26,9 @@ namespace Quiz.Quiz
             if (!isShaking)
             {
                 StartCoroutine(UnavaliableForClick());
-                StartCoroutine(this.gameObject.GetComponent<UI_ShakeItem_Animation>().Shake(this.gameObject));
+                UI_ItemAnimations animations = this.gameObject.GetComponent<UI_ItemAnimations>();
+                animations.ShakeAnimation = new UI_ShakeItem_Animation();
+                StartCoroutine(animations.ShakeAnimation.Shake(this.gameObject));
                 // TODO: Notification window "Wrong answer"
             }
         }

@@ -38,12 +38,19 @@ namespace Quiz.Quiz
                 UI_Manager.Instance.instanciatedUI_GameObjects.Add(gameObject);
                 x++;
             }
+
         }
 
         private GameObject CreateItem(Item item)
         {
             GameObject itemGameObjectInstance = Instantiate(Resources.Load("Item template"), this.gameObject.transform) as GameObject;
+
             itemGameObjectInstance.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = item.GetImage();
+
+            UI_ItemAnimations objectAnimations = itemGameObjectInstance.GetComponent<UI_ItemAnimations>();
+            objectAnimations.BounceAnimation = new Animations.UI_BounceItemAnimation();
+            StartCoroutine(objectAnimations.BounceAnimation.Bounce(itemGameObjectInstance));
+
 
             return itemGameObjectInstance;
         }
