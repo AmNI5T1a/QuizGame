@@ -25,8 +25,9 @@ namespace Quiz.Quiz
 
                 if (x == rngCorrectAnswerPosition)
                 {
-                    gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color32(102, 20, 100, 255);
+                    UI_Manager.Instance.SetCorrectAnswer(item);
                 }
+                gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)rng.Next(0, 255), (byte)rng.Next(0, 255), (byte)rng.Next(0, 255), 255);
                 UI_Manager.Instance.instanciatedUI_GameObjects.Add(gameObject);
                 x++;
             }
