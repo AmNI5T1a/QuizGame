@@ -21,7 +21,6 @@ namespace Quiz.Quiz
                 Destroy(this.gameObject);
         }
 
-
         public void SetCorrectAnswer(Item item)
         {
             correctAnswer = item;

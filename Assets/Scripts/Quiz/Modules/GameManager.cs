@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Quiz.Quiz
 {
-    // TODO: Check the purity of this method
     public class GameManager : MonoBehaviour, ILevelSwitcher
     {
         public static GameManager Instance;
@@ -16,7 +15,7 @@ namespace Quiz.Quiz
         [SerializeField] private List<Level> levels;
 
         [Header("Info box:")]
-        private Level _currentLevel;
+        [SerializeField] private Level _currentLevel;
 
         private void Awake()
         {
